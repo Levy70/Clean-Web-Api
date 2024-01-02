@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Application.Queries.Dogs.GetById
 {
-    public class GetDogByIdQuery : IRequest<Cat>
+    public class GetDogByIdQuery : IRequest<Dog>
     {
         public GetDogByIdQuery(Guid dogId)
         {

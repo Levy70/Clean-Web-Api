@@ -1,30 +1,31 @@
-﻿using Application.Queries.Dogs.GetAll;
-using Domain.Models;
-using Infrastructure.Database;
+﻿using Domain.Models;
+using Infrastructure.Repositories.Animal.Dogs;
 using MediatR;
 
 namespace Application.Commands.Dogs
 {
-    public class AddDogCommandHandler : IRequestHandler<AddDogCommand, Cat>
+    public sealed class AddDogCommandHandler : IRequestHandler<AddDogCommand, Dog>
     {
-        private readonly MockDatabase _mockDatabase;
+        private readonly IDogRepository _dogRepository;
 
-        public AddDogCommandHandler(MockDatabase mockDatabase)
+        public AddDogCommandHandler(IDogRepository dogRepository)
         {
-            _mockDatabase = mockDatabase;
+            _dogRepository = dogRepository;
         }
 
-        public Task<Cat> Handle(AddDogCommand request, CancellationToken cancellationToken)
+        public async Task<Dog> Handle(AddDogCommand request, CancellationToken cancellationToken)
         {
-            Cat dogToCreate = new()
+            Dog dogToCreate = new()
             {
                 Id = Guid.NewGuid(),
-                Name = request.NewDog.Name
+                Name = request.NewDog.Name,
+                Breed = request.NewDog.Breed,
+                Weight = request.NewDog.Weight
             };
 
-            _mockDatabase.Dogs.Add(dogToCreate);
+            await _dogRepository.CreateDogAsync(dogToCreate);
 
-            return Task.FromResult(dogToCreate);
+            return dogToCreate;
         }
     }
 }
