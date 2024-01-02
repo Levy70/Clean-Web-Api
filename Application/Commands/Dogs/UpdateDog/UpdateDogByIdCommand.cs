@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Application.Commands.Dogs.UpdateDog
 {
-    public class UpdateDogByIdCommand : IRequest<Cat>
+    public class UpdateDogByIdCommand : IRequest<Dog>
     {
         public UpdateDogByIdCommand(DogDto updatedDog, Guid id)
         {
@@ -12,7 +12,7 @@ namespace Application.Commands.Dogs.UpdateDog
             Id = id;
         }
 
-        public DogDto UpdatedDog { get; }
+        public DogDto UpdatedDog { get; set; }
         public Guid Id { get; }
     }
 }

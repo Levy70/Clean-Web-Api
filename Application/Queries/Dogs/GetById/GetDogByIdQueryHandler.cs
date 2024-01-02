@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Application.Queries.Dogs.GetById
 {
-    public class GetDogByIdQueryHandler : IRequestHandler<GetDogByIdQuery, Cat>
+    public class GetDogByIdQueryHandler : IRequestHandler<GetDogByIdQuery, Dog>
     {
         private readonly MockDatabase _mockDatabase;
 
@@ -13,9 +13,9 @@ namespace Application.Queries.Dogs.GetById
             _mockDatabase = mockDatabase;
         }
 
-        public Task<Cat> Handle(GetDogByIdQuery request, CancellationToken cancellationToken)
+        public Task<Dog> Handle(GetDogByIdQuery request, CancellationToken cancellationToken)
         {
-            Cat wantedDog = _mockDatabase.Dogs.FirstOrDefault(dog => dog.Id == request.Id)!;
+            Dog wantedDog = _mockDatabase.Dogs.FirstOrDefault(dog => dog.Id == request.Id)!;
             return Task.FromResult(wantedDog);
         }
     }

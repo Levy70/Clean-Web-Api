@@ -61,7 +61,7 @@ namespace API.Controllers.DogsController
 
         public async Task<IActionResult> DeleteDog(Guid id)
         {
-            var cat = await _mediator.Send(new DeleteDogCommand(id));
+            var cat = await _mediator.Send(new DeleteDogByIdCommand(id));
             if (cat != null)
             {
                 return Ok($"Dog with Id {id} has been successfully deleted.");
