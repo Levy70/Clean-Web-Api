@@ -10,6 +10,6 @@ namespace Domain.Models
         {
             return "This animal barks";
         }
-      
+
     }
 }
