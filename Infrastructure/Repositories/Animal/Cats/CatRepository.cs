@@ -56,5 +56,15 @@ namespace Infrastructure.Database.Repositories.Cats
         {
             return await _context.Cats.Where(cat => cat.Weight == weight).ToListAsync();
         }
+
+        public Task<List<Cat>> GetAllDogs()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Cat> GetCatById(Guid id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
