@@ -1,5 +1,4 @@
 ﻿using Application.Commands.Cats;
-using Application.Commands.Cats.AddCat;
 using Application.Commands.Cats.DeleteCat;
 using Application.Commands.Cats.UpdateCat;
 using Application.Dtos;

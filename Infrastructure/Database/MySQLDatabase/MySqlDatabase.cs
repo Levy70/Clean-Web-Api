@@ -46,13 +46,9 @@ namespace Infrastructure.Database.MySQLDatabase
                 .WithMany(_animal => _animal.UserAnimals)
                 .HasForeignKey(_userAnimal => _userAnimal.AnimalId);
 
-            //Configure Dog entity
-            modelBuilder.Entity<Dog>()
-                .Property(dog => dog.Name);
-            modelBuilder.Entity<Dog>()
-                .Property(dog => dog.Breed);
-            modelBuilder.Entity<Dog>()
-                .Property(dog => dog.Weight);
+
+
+
 
             //Configure Bird entity
             modelBuilder.Entity<Bird>()
@@ -71,6 +67,15 @@ namespace Infrastructure.Database.MySQLDatabase
                 .Property(cat => cat.Breed);
             modelBuilder.Entity<Cat>()
                 .Property(cat => cat.Weight);
+
+            //Configure Dog entity
+            modelBuilder.Entity<Dog>()
+                .Property(dog => dog.Name);
+            modelBuilder.Entity<Dog>()
+                .Property(dog => dog.Breed);
+            modelBuilder.Entity<Dog>()
+                .Property(dog => dog.Weight);
+
         }
     }
 }

@@ -1,6 +1,12 @@
 ﻿using Infrastructure.Database.MySQLDatabase;
+using Infrastructure.Database.Repositories.BirdRepository;
+using Infrastructure.Database.Repositories;
+using Infrastructure.Repositories.Animal.Birds;
+using Infrastructure.Repositories.Animal.Cats;
+using Infrastructure.Repositories.Animal.Dogs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Infrastructure.Database.Repositories.Cats;
 
 namespace Infrastructure
 {
@@ -9,6 +15,10 @@ namespace Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             services.AddSingleton<MySqlDatabase>();
+            services.AddScoped<IDogRepository, DogRepository>();
+            services.AddScoped<ICatRepository, CatRepository>();
+            services.AddScoped<IBirdRepository, BirdRepository>();
+
             services.AddDbContext<MySqlDatabase>(options =>
             {
                 //connectionString to Db
