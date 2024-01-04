@@ -13,7 +13,7 @@ namespace Application.Queries.Cats.GetById
         }
         public Task<Cat> Handle(GetCatByIdQuery request, CancellationToken cancellationToken)
         {
-            Cat wantedCat = _mockDatabase.Cats.FirstOrDefault(cat => cat.Id == request.Id)!;
+            Cat wantedCat = MockDatabase.Cats.FirstOrDefault(cat => cat.Id == request.Id)!;
             return Task.FromResult(wantedCat);
         }
     }

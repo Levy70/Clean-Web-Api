@@ -5,19 +5,19 @@ namespace Infrastructure.Database
 {
     public class MockDatabase
     {
-        public List<Dog> Dogs
+        public static List<Dog> Dogs
         {
             get { return allDogs; }
             set { allDogs = value; }
         }
 
-        public List<Cat> Cats
+        public static List<Cat> Cats
         {
             get { return allCats; }
             set { allCats = value; }
         }
 
-        public List<Bird> Birds
+        public static List<Bird> Birds
         {
             get { return allBirds; }
             set { allBirds = value; }
