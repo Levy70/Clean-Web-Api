@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(MySqlDatabase))]
-    [Migration("20231228204341_AddedNewProperties")]
-    partial class AddedNewProperties
+    [Migration("20240109200839_intialUpdate")]
+    partial class intialUpdate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,21 +65,15 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Models.UserAnimal", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid>("UserId")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid>("AnimalId")
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("char(36)");
-
-                    b.HasKey("Id");
+                    b.HasKey("UserId", "AnimalId");
 
                     b.HasIndex("AnimalId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("UserAnimal");
                 });
@@ -100,28 +94,28 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("315bb005-5d7c-48db-8178-7d1ad3a41d05"),
+                            Id = new Guid("16da9dd8-74d7-4adb-902b-af90b600e21b"),
                             Name = "Parrot",
                             CanFly = false,
                             Color = ""
                         },
                         new
                         {
-                            Id = new Guid("8cfc02d3-6cc7-45fb-8616-0e5c5f9151ad"),
+                            Id = new Guid("bdeb14ea-931b-414a-87bf-0ee3e3dd1043"),
                             Name = "Cortex",
                             CanFly = false,
                             Color = ""
                         },
                         new
                         {
-                            Id = new Guid("5aae6ac2-1814-4797-9792-e63a59e5b7d3"),
+                            Id = new Guid("19afbabc-edaa-43b4-a7be-747f6e04737e"),
                             Name = "Fench",
                             CanFly = false,
                             Color = ""
                         },
                         new
                         {
-                            Id = new Guid("8ef28e95-338c-4d34-9e30-87e6216983df"),
+                            Id = new Guid("e7f75502-6a39-4601-934f-845f7e66476d"),
                             Name = "Feri",
                             CanFly = false,
                             Color = ""
@@ -147,7 +141,7 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("413eca91-1b84-4399-9408-660af4482da0"),
+                            Id = new Guid("f058daee-ae98-496b-82d1-6f210d9de46a"),
                             Name = "Nuno",
                             Breed = "",
                             LikesToPlay = false,
@@ -155,7 +149,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("fb01054a-90b1-4dc8-897f-3bdf50b05170"),
+                            Id = new Guid("b11d75b4-c99d-4d79-a4b2-7ee9b442c303"),
                             Name = "Mani",
                             Breed = "",
                             LikesToPlay = false,
@@ -163,7 +157,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("af2d258d-5fda-4155-9fd7-5a391bd605aa"),
+                            Id = new Guid("d8877a26-127b-444e-a061-aa310c2fe5fe"),
                             Name = "Puppy",
                             Breed = "",
                             LikesToPlay = false,
@@ -171,7 +165,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("c9314b2c-7951-4df7-96b1-28132a7c7e6c"),
+                            Id = new Guid("60981a15-c85c-4c29-bd56-32c9e172d7ed"),
                             Name = "Shima",
                             Breed = "",
                             LikesToPlay = false,
@@ -204,29 +198,29 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("047353a2-1fee-4ca4-847b-88e6a6674b2e"),
-                            Name = "Sedel",
+                            Id = new Guid("e54162dd-07d9-4ab3-a400-181bdddcfba3"),
+                            Name = "",
                             Breed = "",
                             Weight = 0
                         },
                         new
                         {
-                            Id = new Guid("41e81086-0476-4d59-944c-5a513532e523"),
-                            Name = "Tom",
+                            Id = new Guid("f1049b4f-69a4-4186-9c81-585e75300640"),
+                            Name = "",
                             Breed = "",
                             Weight = 0
                         },
                         new
                         {
-                            Id = new Guid("2217ecca-300d-493a-8706-6aafa2598680"),
-                            Name = "Misha",
+                            Id = new Guid("a30b481d-2835-4f6d-9116-600086e32e15"),
+                            Name = "",
                             Breed = "",
                             Weight = 0
                         },
                         new
                         {
-                            Id = new Guid("f480fb3d-a8e4-4917-85a6-2cfc912dc946"),
-                            Name = "Tezar",
+                            Id = new Guid("3cb0e74b-89eb-46a6-8bf4-dcc2b4852af3"),
+                            Name = "",
                             Breed = "",
                             Weight = 0
                         });

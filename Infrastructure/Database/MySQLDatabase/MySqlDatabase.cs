@@ -16,7 +16,8 @@ namespace Infrastructure.Database.MySQLDatabase
         public virtual DbSet<Bird> Birds { get; set; }
         public virtual DbSet<Cat> Cats { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<UserAnimal> UserAnimals { get; set; }
+
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -46,35 +47,6 @@ namespace Infrastructure.Database.MySQLDatabase
                 .WithMany(_animal => _animal.UserAnimals)
                 .HasForeignKey(_userAnimal => _userAnimal.AnimalId);
 
-
-
-
-
-            //Configure Bird entity
-            modelBuilder.Entity<Bird>()
-                .Property(bird => bird.Name);
-            modelBuilder.Entity<Bird>()
-                .Property(bird => bird.Color);
-            modelBuilder.Entity<Bird>()
-                .Property(bird => bird.CanFly);
-
-            //Configure Cat entity
-            modelBuilder.Entity<Cat>()
-                .Property(cat => cat.Name);
-            modelBuilder.Entity<Cat>()
-                .Property(cat => cat.LikesToPlay);
-            modelBuilder.Entity<Cat>()
-                .Property(cat => cat.Breed);
-            modelBuilder.Entity<Cat>()
-                .Property(cat => cat.Weight);
-
-            //Configure Dog entity
-            modelBuilder.Entity<Dog>()
-                .Property(dog => dog.Name);
-            modelBuilder.Entity<Dog>()
-                .Property(dog => dog.Breed);
-            modelBuilder.Entity<Dog>()
-                .Property(dog => dog.Weight);
 
         }
     }
