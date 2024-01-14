@@ -16,8 +16,8 @@ namespace Infrastructure.Database.MySQLDatabase
         public virtual DbSet<Bird> Birds { get; set; }
         public virtual DbSet<Cat> Cats { get; set; }
         public virtual DbSet<User> Users { get; set; }
-
-
+        public virtual DbSet<AnimalModel> AnimalModel { get; set; }
+        public virtual DbSet<UserAnimal> UserAnimal { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
