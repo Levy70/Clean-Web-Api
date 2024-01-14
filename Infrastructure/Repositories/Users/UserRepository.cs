@@ -1,6 +1,8 @@
 ﻿using Domain.Models;
 using Infrastructure.Database.MySQLDatabase;
-using Infrastructure.Repositories.Users;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using NLog;
 
 namespace Infrastructure.Repositories.Users
 {
@@ -38,6 +40,26 @@ namespace Infrastructure.Repositories.Users
             {
                 throw new ArgumentException(e.Message);
             }
+        }
+
+        public Task<bool> AddUserAnimalAsync(UserAnimal userAnimal)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteAnimalByUser(Guid userId, Guid animalId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UpdateUserAnimal(Guid userId, Guid oldAnimalId, Guid newAnimalId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<UserAnimal>> GetAllUsersWithAnimals()
+        {
+            throw new NotImplementedException();
         }
     }
 }

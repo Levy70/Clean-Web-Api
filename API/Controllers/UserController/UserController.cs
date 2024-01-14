@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 using Application.Validators.User;
 using Application.Dtos.Errors;
 using Application.Exceptions.Authorize;
+using Application.Commands.Users;
+using Application.Dtos;
+using Domain.Dtos;
+using Application.Queries.Users;
 
 namespace API.Controllers.UsersController
 {
@@ -70,5 +74,69 @@ namespace API.Controllers.UsersController
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost]
+        [Route("GetUsersWithTheirAnimals")]
+        public async Task<IActionResult> GetUsersWithTheirAnimals()
+        {
+            var command = new GetUsersWithAnimalsQuery();
+            var usersWithAllTheirAnimals = await _mediator.Send(command);
+
+            return Ok(usersWithAllTheirAnimals);
+        }
+
+        [HttpPost]
+        [Route("addAnimalToUser")]
+        public async Task<IActionResult> AddAnimalToUser([FromBody] AddAnimalToUserDto dto)
+        {
+
+            var userAnimalDto = new UserAnimalDto
+            {
+                UserId = dto.UserId,
+                AnimalId = dto.AnimalId,
+            };
+
+            var command = new AddNewAnimalCommand(userAnimalDto);
+            var success = await _mediator.Send(command);
+
+            if (success)
+            {
+                return Ok("Animal added to user successfully");
+            }
+            else
+            {
+                return BadRequest("Failed to add animal to user");
+            }
+        }
+
+        [HttpPut]
+        [Route("updateUserAnimal")]
+        public async Task<IActionResult> UpdateUserAnimal([FromBody] UpdateUserAnimalDto dto)
+        {
+            var validator = new UpdateUserAnimalDtoValidator();
+            var validationResult = await validator.ValidateAsync(dto);
+
+            if (!validationResult.IsValid)
+            {
+                var errors = validationResult.Errors.Select(error => error.ErrorMessage);
+                return BadRequest(errors);
+            }
+
+            var command = new UpdateUserAnimalCommand(dto.UserId, dto.OldAnimalId, dto.NewAnimalId);
+            await _mediator.Send(command);
+
+            return Ok("User's animal updated successfully");
+        }
+
+        [HttpDelete]
+        [Route("deleteAnimalFromUser")]
+        public async Task<IActionResult> DeleteAnimalFromUser([FromBody] DeleteAnimalFromUserDto dto)
+        {
+            var command = new DeleteAnimalByUserCommand(dto.UserId, dto.AnimalId);
+            await _mediator.Send(command);
+
+            return Ok("Animal deleted from user successfully");
+        }
+
     }
 }
