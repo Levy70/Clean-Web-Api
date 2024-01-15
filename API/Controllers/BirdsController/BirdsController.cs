@@ -53,7 +53,7 @@ namespace API.Controllers.BirdsController
         [Route("updateBird/{updateBirdId}")]
         public async Task<IActionResult> UpdateBird([FromBody] BirdDto updatedBird, Guid updateBirdId)
         {
-            return Ok(await _mediator.Send(new UpdateBirdByIdCommand(updatedBird, updateBirdId, updatedBird.CanFly)));
+            return Ok(await _mediator.Send(new UpdateBirdByIdCommand(updateBirdId, updatedBird)));
         }
 
         [HttpDelete("{id}")]

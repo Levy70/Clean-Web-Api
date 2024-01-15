@@ -7,6 +7,8 @@ using Infrastructure.Repositories.Animal.Dogs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Infrastructure.Database.Repositories.Cats;
+using Infrastructure.Repositories.Users;
+using Infrastructure.Repositories.Authorization;
 
 namespace Infrastructure
 {
@@ -14,10 +16,11 @@ namespace Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
-            services.AddSingleton<MySqlDatabase>();
-            services.AddScoped<IDogRepository, DogRepository>();
-            services.AddScoped<ICatRepository, CatRepository>();
-            services.AddScoped<IBirdRepository, BirdRepository>();
+            services.AddTransient<IDogRepository, DogRepository>();
+            services.AddTransient<ICatRepository, CatRepository>();
+            services.AddTransient<IBirdRepository, BirdRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IAuthRepository, AuthRepository>();
 
             services.AddDbContext<MySqlDatabase>(options =>
             {
